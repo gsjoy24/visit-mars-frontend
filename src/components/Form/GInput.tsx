@@ -21,7 +21,7 @@ const GInput = ({ label, type = 'text', ariaLabel, name, placeholder, sx, multil
 			control={control}
 			name={name}
 			render={({ field, fieldState: { error } }) => (
-				<div>
+				<div className='w-full'>
 					<label htmlFor={name} className='text-sm font-medium text-gray-700'>
 						{label}
 					</label>
