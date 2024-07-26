@@ -6,10 +6,9 @@ import React from 'react';
 type Props = {
 	loading: boolean;
 	res: Record<any, unknown>;
-	setActiveStep: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const SuccessMessage = ({ loading, res, setActiveStep }: Props) => {
+const SuccessMessage = ({ loading, res }: Props) => {
 	return (
 		<Container maxWidth='sm' sx={{ textAlign: 'center', mt: 5 }}>
 			{loading ? (

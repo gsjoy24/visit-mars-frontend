@@ -1,4 +1,5 @@
 'use client';
+import SendApplication from '@/actions/SendApplication';
 import GDatePicker from '@/components/Form/GDatePicker';
 import GForm from '@/components/Form/GForm';
 import GInput from '@/components/Form/GInput';
@@ -48,7 +49,7 @@ const healthDeclarationOptions = [
 
 const Home = () => {
 	const [activeStep, setActiveStep] = useState<number>(0);
-	const [loading, isLoading] = useState<boolean>(false);
+	const [loading, setLoading] = useState<boolean>(false);
 	const [res, setRes] = useState<Record<any, unknown>>({});
 	// dates and errors
 	const [dateOfBirth, setDateOfBirth] = useState<Dayjs | null>(null);
@@ -91,6 +92,7 @@ const Home = () => {
 	};
 
 	const handleSubmit = async (data: FieldValues) => {
+		setLoading(true);
 		const dateOfBirthString = DateToString(dateOfBirth);
 		const departureDateString = DateToString(departureDate);
 		const returnDateString = DateToString(returnDate);
@@ -107,17 +109,12 @@ const Home = () => {
 		setActiveStep((prevActiveStep) => prevActiveStep + 1);
 
 		try {
-			const res = await fetch('https://visit-mars-backend.vercel.app/api/visitors/create', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify(combinedData)
-			});
-			const data = await res.json();
-			setRes(data);
+			const res = await SendApplication(combinedData);
+			setRes(res);
 		} catch (error: any) {
 			console.log(error);
+		} finally {
+			setLoading(false);
 		}
 	};
 
@@ -134,7 +131,7 @@ const Home = () => {
 			</Typography>
 
 			{activeStep === 3 ? (
-				<SuccessMessage loading={loading} res={res} setActiveStep={setActiveStep} />
+				<SuccessMessage loading={loading} res={res} />
 			) : (
 				<Box sx={{ width: '100%' }}>
 					<Stepper activeStep={activeStep}>
