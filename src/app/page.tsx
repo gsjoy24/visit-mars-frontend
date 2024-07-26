@@ -121,10 +121,15 @@ const Home = () => {
 	return (
 		<Container>
 			<Typography
-				variant='h4'
+				variant='h2'
 				gutterBottom
 				sx={{
-					my: 3
+					my: 4,
+					fontSize: {
+						xs: '2.3rem',
+						md: '3rem'
+					},
+					textAlign: 'center'
 				}}
 			>
 				Journey to Mars Application Form
@@ -134,8 +139,8 @@ const Home = () => {
 				<SuccessMessage loading={loading} res={res} />
 			) : (
 				<Box sx={{ width: '100%' }}>
-					<Stepper activeStep={activeStep}>
-						{steps.map((label, index) => {
+					<Stepper activeStep={activeStep} alternativeLabel>
+						{steps.map((label) => {
 							const stepProps: { completed?: boolean } = {};
 							const labelProps: {
 								optional?: React.ReactNode;
