@@ -4,7 +4,7 @@ import { CiWarning } from 'react-icons/ci';
 
 type GSelectProps = {
 	label?: string;
-	options: { value: string | number; label: string }[];
+	options: { value: string | number; label: string; disable?: boolean }[];
 	name: string;
 	sx?: SxProps;
 };
@@ -18,21 +18,20 @@ const GSelect = ({ label, options, name, sx }: GSelectProps) => {
 			name={name}
 			render={({ field, fieldState: { error } }) => (
 				<FormControl sx={sx ? { ...sx } : { width: '100%' }} disabled={!options}>
-					<InputLabel id='demo-select-small-label'>{label}</InputLabel>
+					<label htmlFor={name} className='text-sm font-medium text-gray-700 mb-2'>
+						{label}
+					</label>
 					<Select
-						labelId='demo-simple-select-label'
 						id='demo-simple-select'
 						{...field}
-						label={label}
-						placeholder={label}
 						variant='outlined'
 						size='small'
-						value={field.value || ''}
+						value={field.value || '0'}
 						error={!!error?.message}
 					>
 						{options?.map((option) => (
-							<MenuItem key={option?.value} value={option.value}>
-								{option.label}
+							<MenuItem key={option?.value} value={option?.value} disabled={option?.disable}>
+								{option?.label}
 							</MenuItem>
 						))}
 					</Select>

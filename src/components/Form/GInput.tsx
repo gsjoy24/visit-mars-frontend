@@ -1,3 +1,4 @@
+import { TVisitor } from '@/types';
 import { SxProps, TextField } from '@mui/material';
 import { Controller, useFormContext } from 'react-hook-form';
 import { CiWarning } from 'react-icons/ci';
@@ -35,7 +36,7 @@ const GInput = ({ label, type = 'text', ariaLabel, name, placeholder, sx, multil
 						variant='outlined'
 						multiline={multiline}
 						type={type}
-						value={field.value || ''}
+						value={field?.value ?? ''}
 						size='small'
 						fullWidth
 						error={!!error?.message}

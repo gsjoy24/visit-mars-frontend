@@ -7,9 +7,13 @@ export const PersonalInfoValidation = z.object({
 	nationality: z.string({
 		required_error: 'Please enter your nationality!'
 	}),
-	email: z.string({
-		required_error: 'Please enter your email!'
-	}),
+	email: z
+		.string({
+			required_error: 'Please enter your email!'
+		})
+		.email({
+			message: 'Enter a valid email!'
+		}),
 	phone: z.string({
 		required_error: 'Please enter your phone number!'
 	})
@@ -17,15 +21,17 @@ export const PersonalInfoValidation = z.object({
 
 export const TravelPreferencesValidation = z.object({
 	accommodationPreference: z.string({
-		required_error: 'Please enter your accommodation preference!'
-	})
+		required_error: 'Please select your accommodation preference!'
+	}),
+	specialRequests: z.string().optional()
 });
 
-const HealthAndSafetyValidation = z.object({
+export const HealthAndSafetyValidation = z.object({
 	healthDeclaration: z.string({
 		required_error: 'Please select your health declaration!'
 	}),
 	emergencyContact: z.string({
 		required_error: 'Please enter a emergency contact!'
-	})
+	}),
+	medicalConditions: z.string().optional()
 });

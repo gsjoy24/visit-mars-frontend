@@ -8,22 +8,44 @@ type GDatePickerProps = {
 	label?: string;
 	dateError?: string | null;
 	setDateError: Dispatch<SetStateAction<string | null>>;
+	date: Dayjs | null;
+	minDate?: Dayjs | undefined;
+	disablePast?: boolean;
+	disableFuture?: boolean;
+	disabled?: boolean;
 };
 
-const GDatePicker = ({ setDate, label, dateError, setDateError }: GDatePickerProps) => {
+const GDatePicker = ({
+	date,
+	setDate,
+	minDate,
+	label,
+	dateError,
+	setDateError,
+	disablePast,
+	disableFuture,
+	disabled
+}: GDatePickerProps) => {
 	return (
 		<div className='w-full'>
 			<label className='text-sm font-medium text-gray-700'>{label ?? 'Date'}</label>
 			<DatePicker
-				disableFuture
-				onChange={(newValue) => setDate(newValue)}
+				disabled={disabled}
+				minDate={minDate}
+				defaultValue={date}
+				disablePast={disablePast}
+				disableFuture={disableFuture}
+				onChange={(newValue) => {
+					setDate(newValue);
+					setDateError(null);
+				}}
 				slotProps={{
 					field: { clearable: true, onClear: () => setDate(null) },
 					textField: {
 						size: 'small',
 						variant: 'outlined',
 						helperText: dateError && (
-							<span className='flex items-center gap-1 '>
+							<span className='flex items-center gap-1 relative -left-[12px]'>
 								<CiWarning size={16} /> {dateError}
 							</span>
 						),
@@ -36,7 +58,7 @@ const GDatePicker = ({ setDate, label, dateError, setDateError }: GDatePickerPro
 				}}
 				sx={{
 					width: '100%',
-					mb: 2
+					mt: '5px'
 				}}
 			/>
 		</div>
