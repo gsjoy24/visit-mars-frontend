@@ -119,7 +119,7 @@ const Home = () => {
 	};
 
 	return (
-		<Container>
+		<>
 			<Typography
 				variant='h2'
 				gutterBottom
@@ -163,7 +163,10 @@ const Home = () => {
 						>
 							<GInput label='Full Name' name='fullName' />
 							<Stack
-								direction='row'
+								direction={{
+									xs: 'column',
+									md: 'row'
+								}}
 								sx={{
 									width: '100%',
 									gap: 1
@@ -181,7 +184,10 @@ const Home = () => {
 								<GInput label='Nationality' name='nationality' />
 							</Stack>
 							<Stack
-								direction='row'
+								direction={{
+									xs: 'column',
+									md: 'row'
+								}}
 								sx={{
 									width: '100%',
 									gap: 1
@@ -208,7 +214,10 @@ const Home = () => {
 							resolver={zodResolver(TravelPreferencesValidation)}
 						>
 							<Stack
-								direction='row'
+								direction={{
+									xs: 'column',
+									md: 'row'
+								}}
 								sx={{
 									width: '100%',
 									gap: 1
@@ -254,7 +263,10 @@ const Home = () => {
 							styleClasses='w-full min-h-[400px] p-5 flex flex-col gap-3'
 						>
 							<Stack
-								direction='row'
+								direction={{
+									xs: 'column',
+									md: 'row'
+								}}
 								sx={{
 									width: '100%',
 									gap: 1
@@ -276,7 +288,7 @@ const Home = () => {
 					)}
 				</Box>
 			)}
-		</Container>
+		</>
 	);
 };
 export default Home;
