@@ -30,8 +30,8 @@ const SuccessMessage = ({ loading, res }: Props) => {
 					</Typography>
 					<Typography variant='body1' sx={{ mb: 3 }}>
 						{res?.success
-							? '	Your application has been submitted successfully!'
-							: 'Something went wrong! Please try again!'}
+							? 'Your application has been submitted successfully.'
+							: `${res?.message ?? 'There was an error submitting your application. Please try again.'}`}
 					</Typography>
 					<Button onClick={() => location.reload()}>{res?.success ? 'Submit another application' : `Try Again`}</Button>
 				</Box>
