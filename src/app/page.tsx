@@ -1,8 +1,8 @@
 'use client';
-import SendApplication from '@/actions/SendApplication';
 import FormStep1 from '@/components/FormStages/FormStep1';
 import FormStep2 from '@/components/FormStages/FormStep2';
 import FormStep3 from '@/components/FormStages/FormStep3';
+import PreviewStage from '@/components/FormStages/PreviewStage';
 import SuccessMessage from '@/components/SuccessMessage';
 import { TVisitor } from '@/types';
 import DateToString from '@/utils/DateToString';
@@ -11,12 +11,13 @@ import { Dayjs } from 'dayjs';
 import { useState } from 'react';
 import { FieldValues } from 'react-hook-form';
 
-const steps = ['Personal Information', 'Travel Preferences', 'Health and Safety'];
+const steps = ['Personal Information', 'Travel Preferences', 'Health and Safety', 'Preview'];
 
 const Home = () => {
 	const [activeStep, setActiveStep] = useState<number>(0);
 	const [loading, setLoading] = useState<boolean>(false);
 	const [res, setRes] = useState<Record<any, unknown>>({});
+
 	// dates and errors
 	const [dateOfBirth, setDateOfBirth] = useState<Dayjs | null>(null);
 	const [dateOfBirthError, setDateOfBirthError] = useState<string | null>(null);
@@ -30,6 +31,8 @@ const Home = () => {
 	const [personalInfo, setPersonalInfo] = useState<Partial<TVisitor>>({});
 	const [travelPreferences, setTravelPreferences] = useState<Partial<TVisitor>>({});
 	const [healthAndSafetyInfo, setHealthAndSafetyInfo] = useState<Partial<TVisitor>>({});
+
+	const [allData, setAllData] = useState<Partial<TVisitor>>({});
 
 	const handleBack = () => {
 		setActiveStep((prevActiveStep) => prevActiveStep - 1);
@@ -57,13 +60,12 @@ const Home = () => {
 		setActiveStep((prevActiveStep) => prevActiveStep + 1);
 	};
 
-	const handleSubmit = async (data: FieldValues) => {
-		setLoading(true);
+	const handleHealthAndSafetyInfo = (data: FieldValues) => {
+		setHealthAndSafetyInfo(data);
 		const dateOfBirthString = DateToString(dateOfBirth);
 		const departureDateString = DateToString(departureDate);
 		const returnDateString = DateToString(returnDate);
 
-		setHealthAndSafetyInfo(data);
 		const combinedData = {
 			...personalInfo,
 			dateOfBirth: dateOfBirthString,
@@ -72,16 +74,8 @@ const Home = () => {
 			returnDate: returnDateString,
 			...data
 		};
+		setAllData(combinedData);
 		setActiveStep((prevActiveStep) => prevActiveStep + 1);
-
-		try {
-			const res = await SendApplication(combinedData);
-			setRes(res);
-		} catch (error: any) {
-			console.log(error);
-		} finally {
-			setLoading(false);
-		}
 	};
 
 	return (
@@ -101,7 +95,7 @@ const Home = () => {
 				Journey to Mars Application Form
 			</Typography>
 
-			{activeStep === 3 ? (
+			{activeStep === 4 ? (
 				<SuccessMessage loading={loading} res={res} />
 			) : (
 				<Box sx={{ width: '100%' }}>
@@ -124,7 +118,6 @@ const Home = () => {
 						<FormStep1
 							dateOfBirth={dateOfBirth}
 							dateOfBirthError={dateOfBirthError}
-							handleBack={handleBack}
 							handlePersonalInfo={handlePersonalInfo}
 							personalInfo={personalInfo}
 							setDateOfBirth={setDateOfBirth}
@@ -152,8 +145,12 @@ const Home = () => {
 						<FormStep3
 							healthAndSafetyInfo={healthAndSafetyInfo}
 							handleBack={handleBack}
-							handleHealthAndSafetyInfo={handleSubmit}
+							handleHealthAndSafetyInfo={handleHealthAndSafetyInfo}
 						/>
+					)}
+
+					{activeStep === 3 && (
+						<PreviewStage allData={allData} setLoading={setLoading} setRes={setRes} setActiveStep={setActiveStep} />
 					)}
 				</Box>
 			)}

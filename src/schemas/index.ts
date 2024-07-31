@@ -14,9 +14,20 @@ export const PersonalInfoValidation = z.object({
 		.email({
 			message: 'Enter a valid email!'
 		}),
-	phone: z.string({
-		required_error: 'Please enter your phone number!'
-	})
+	phone: z
+		.string({
+			required_error: 'Please enter your phone number!'
+		})
+		.refine(
+			(value) => {
+				// at least 10 digits and at most 14 digits and only digits are allowed
+				const regex = /^\d{10,14}$/;
+				return regex.test(value);
+			},
+			{
+				message: 'Enter a valid phone number!'
+			}
+		)
 });
 
 export const TravelPreferencesValidation = z.object({
@@ -30,8 +41,18 @@ export const HealthAndSafetyValidation = z.object({
 	healthDeclaration: z.string({
 		required_error: 'Please select your health declaration!'
 	}),
-	emergencyContact: z.string({
-		required_error: 'Please enter a emergency contact!'
-	}),
+	emergencyContact: z
+		.string({
+			required_error: 'Please enter a emergency contact!'
+		})
+		.refine(
+			(value) => {
+				const regex = /^(?:\+?88)?01[0-9]{9}$/;
+				return regex.test(value);
+			},
+			{
+				message: 'Enter a valid phone number!'
+			}
+		),
 	medicalConditions: z.string().optional()
 });

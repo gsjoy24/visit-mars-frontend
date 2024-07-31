@@ -11,7 +11,6 @@ import GInput from '../Form/GInput';
 type TFormStep1 = {
 	personalInfo: Partial<TVisitor>;
 	handlePersonalInfo: (data: Partial<TVisitor>) => void;
-	handleBack: () => void;
 
 	dateOfBirth: Dayjs | null;
 	setDateOfBirth: Dispatch<SetStateAction<Dayjs | null>>;
@@ -22,7 +21,6 @@ type TFormStep1 = {
 const FormStep1 = ({
 	personalInfo,
 	handlePersonalInfo,
-	handleBack,
 	dateOfBirth,
 	setDateOfBirth,
 	dateOfBirthError,
@@ -68,10 +66,10 @@ const FormStep1 = ({
 				}}
 			>
 				<GInput label='Email' name='email' type='email' />
-				<GInput label='Phone' name='phone' type='tel' />
+				<GInput label='Phone' placeholder='8801*********' name='phone' type='tel' />
 			</Stack>
 			<Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-				<Button color='inherit' disabled onClick={handleBack} sx={{ mr: 1 }}>
+				<Button disabled sx={{ mr: 1 }}>
 					Back
 				</Button>
 				<Box sx={{ flex: '1 1 auto' }} />
