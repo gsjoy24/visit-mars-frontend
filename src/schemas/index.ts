@@ -21,7 +21,7 @@ export const PersonalInfoValidation = z.object({
 		.refine(
 			(value) => {
 				// at least 10 digits and at most 14 digits and only digits are allowed
-				const regex = /^\d{10,14}$/;
+				const regex = /^(\+?88)?01[0-9]{9}$/;
 				return regex.test(value);
 			},
 			{
@@ -47,7 +47,7 @@ export const HealthAndSafetyValidation = z.object({
 		})
 		.refine(
 			(value) => {
-				const regex = /^(?:\+?88)?01[0-9]{9}$/;
+				const regex = /^(\+?88)?01[0-9]{9}$/;
 				return regex.test(value);
 			},
 			{

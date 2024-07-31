@@ -8,6 +8,7 @@ This a simple multi-stage application form for individuals interested in visitin
 - Users must fill out all fields to proceed to the next form stage, except for fields marked as optional.
 - Users cannot select a future date for the birth date.
 - Users cannot select a past date for the departure date. They must select a departure date before selecting the return date, and they cannot select a return date earlier than the departure date. For example, if the user selects July 29 as the departure date, they must select July 29 or later for the return date.
+- All inputs will be validated before submission.
 
 ## How to run this project on your local machine?
 
@@ -22,3 +23,9 @@ NEXT_PUBLIC_SERVER_URL=https://visit-mars-backend.vercel.app/api/
 4. Now you can run the project on localhost with the command npm run dev.
 
 visit the file `package.json` to know other commands.
+
+### Links
+
+frontend live: <https://visit-mars-five.vercel.app/>
+backend live: <https://visit-mars-backend.vercel.app/api/>
+backend git: <https://github.com/gsjoy24/visit-mars-backend>
