@@ -46,7 +46,7 @@ const FormStep3 = ({ healthAndSafetyInfo, handleHealthAndSafetyInfo, handleBack 
 					gap: 1
 				}}
 			>
-				<GInput label='Emergency Contact' placeholder='8801*********' name='emergencyContact' type='tel' />
+				<GInput label='Emergency Contact' placeholder='+8801xxxxxxxxx' name='emergencyContact' type='tel' />
 				<GSelect label='Health Declaration' name='healthDeclaration' options={healthDeclarationOptions} />
 			</Stack>
 

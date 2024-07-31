@@ -66,7 +66,7 @@ const FormStep1 = ({
 				}}
 			>
 				<GInput label='Email' name='email' type='email' />
-				<GInput label='Phone' placeholder='8801*********' name='phone' type='tel' />
+				<GInput label='Phone' placeholder='+8801xxxxxxxxx' name='phone' type='tel' />
 			</Stack>
 			<Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
 				<Button disabled sx={{ mr: 1 }}>
