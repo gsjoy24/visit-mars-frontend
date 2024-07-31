@@ -1,4 +1,4 @@
-import { FormControl, FormHelperText, InputLabel, MenuItem, Select, SxProps } from '@mui/material';
+import { FormControl, FormHelperText, MenuItem, Select, SxProps } from '@mui/material';
 import { Controller, useFormContext } from 'react-hook-form';
 import { CiWarning } from 'react-icons/ci';
 

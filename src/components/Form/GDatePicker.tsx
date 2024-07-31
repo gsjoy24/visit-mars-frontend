@@ -9,7 +9,7 @@ type GDatePickerProps = {
 	dateError?: string | null;
 	setDateError: Dispatch<SetStateAction<string | null>>;
 	date: Dayjs | null;
-	minDate?: Dayjs | undefined;
+	minDate?: Dayjs;
 	disablePast?: boolean;
 	disableFuture?: boolean;
 	disabled?: boolean;

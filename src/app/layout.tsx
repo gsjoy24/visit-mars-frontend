@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 	description: 'Multi-Stage Mars Visit Application Form.'
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { readonly children: React.ReactNode }) {
 	return (
 		<Providers>
 			<html lang='en'>

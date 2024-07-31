@@ -82,7 +82,7 @@ const FormStep2 = ({
 				<GDatePicker
 					label='Return Date'
 					date={returnDate}
-					minDate={departureDate as any}
+					minDate={departureDate ?? undefined}
 					setDate={setReturnDate}
 					setDateError={setReturnDateError}
 					dateError={returnDateError}

@@ -1,4 +1,3 @@
-import { TVisitor } from '@/types';
 import { SxProps, TextField } from '@mui/material';
 import { Controller, useFormContext } from 'react-hook-form';
 import { CiWarning } from 'react-icons/ci';
@@ -28,11 +27,11 @@ const GInput = ({ label, type = 'text', ariaLabel, name, placeholder, sx, multil
 					</label>
 					<TextField
 						{...field}
-						aria-label={ariaLabel || placeholder}
+						aria-label={ariaLabel ?? placeholder}
 						inputProps={{ autoComplete: name }}
 						sx={{ ...sx, width: '100%', borderRadius: '5px', mt: '5px' }}
-						placeholder={placeholder || label}
-						minRows={rows || 5}
+						placeholder={placeholder ?? label}
+						minRows={rows ?? 5}
 						variant='outlined'
 						multiline={multiline}
 						type={type}

@@ -26,6 +26,6 @@ visit the file `package.json` to know other commands.
 
 ### Links
 
-frontend live: <https://visit-mars-five.vercel.app/>
-backend live: <https://visit-mars-backend.vercel.app/api/>
-backend git: <https://github.com/gsjoy24/visit-mars-backend>
+- frontend live: <https://visit-mars-five.vercel.app/>
+- backend live: <https://visit-mars-backend.vercel.app/api/>
+- backend git: <https://github.com/gsjoy24/visit-mars-backend>
